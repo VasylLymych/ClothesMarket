@@ -1,0 +1,33 @@
+const {getUsersByParams} = require('../../services');
+const {CustomError} = require('./../../error');
+const {USER_ROLE, USER_STATUS} = require('./../../constant')
+
+module.exports = async (req, res, next) => {
+    try {
+        let allUsers = [];
+        let paginatedUsers = [];
+        let {limit, page} = req.query;
+        let offset = (page - 1) * limit;
+        let allUsersAmount = 0;
+        let allPagesAmount = 0;
+
+        allUsers = await getUsersByParams(
+            {status_id: USER_STATUS.BLOCKED, role_id: USER_ROLE.USER}
+        );
+
+
+        allUsersAmount = allUsers.length;
+        allPagesAmount = allUsersAmount / limit;
+
+        paginatedUsers = await getUsersByParams(
+            {status_id: USER_STATUS.BLOCKED, role_id: USER_ROLE.USER},
+            limit,
+            offset
+        );
+
+        res.json({allUsersAmount, allPagesAmount, paginatedUsers})
+    } catch (e) {
+        next(new CustomError(e.status, e.message, e.code))
+    }
+
+};

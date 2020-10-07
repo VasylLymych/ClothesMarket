@@ -1,0 +1,11 @@
+module.exports.DB_TABLE_NAME = require('./dbTableName.enum');
+module.exports.PRODUCT_STATUS = require('./productStatus.enum');
+module.exports.PURCHASE_STATUS = require('./purchaseStatus.enum');
+module.exports.USER_ROLE = require('./userRole.enum');
+module.exports.USER_STATUS = require('./userStatus.enum');
+module.exports.RESPONSE_STATUS_CODE = require('./responseStatusCode');
+module.exports.PASSWORD_REGEX = require('./passwordRegex');
+module.exports.MAILER_TRANSPORT_DATA = require('./mailerTransportData');
+module.exports.COMMENT_STATUS = require('./commentStatus.enum');
+module.exports.PRODUCT_SECTION = require('./productSection.enum');
+module.exports.PRODUCT_PHOTO_PARAMS = require('./productPhotoParams');

@@ -1,0 +1,20 @@
+module.exports = {
+    USER: 'User',
+    PRODUCT_PHOTO: 'Product_photo',
+    OAUTH_TOKEN: 'OAuth_token',
+    PRODUCT_STATUS: 'Product_status',
+    PRODUCT: 'Product',
+    USER_ROLE: 'User_role',
+    PURCHASE: 'Purchase',
+    USER_STATUS: 'User_status',
+    PURCHASE_STATUS: 'Purchase_status',
+    GENDER: 'Gender',
+    COMMENT: 'Comment',
+    COMMENT_STATUS: 'Comment_status',
+    REPLY_COMMENT: 'Reply_comment',
+    PRODUCT_LIKE: 'Product_like',
+    PRODUCT_SECTION: 'Product_section',
+    PRODUCT_SIZE: 'Product_size',
+    PRODUCT_TYPE: 'Product_type',
+    CART: 'Cart'
+};
