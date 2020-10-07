@@ -19,7 +19,7 @@ cartRouter.delete('/:product_id', checkAccessToken, getUserFromAccessToken, dele
 cartRouter.get('/', checkAccessToken, getUserFromAccessToken, getAllProductsFromCartByParams)
 cartRouter.post('/buy', checkAccessToken, getUserFromAccessToken, buyProduct)
 cartRouter.post('/addPurchase', checkAccessToken, getUserFromAccessToken, checkIsAdmin, addPurchase)
-cartRouter.post('/unauthorizedPurchase',checkAccessToken,unauthorizedPurchase)
+cartRouter.post('/unauthorizedPurchase',unauthorizedPurchase)
 
 module.exports = cartRouter;
 
