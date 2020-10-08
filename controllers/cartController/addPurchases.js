@@ -7,8 +7,8 @@ const {purchaseValidator} = require('./../../validators');
 module.exports = async (req, res, next) => {
     try {
         const purchaseData = req.body;
+        const products = req.products;
         purchaseData.user_id = 0;
-        purchaseData.product_id = 0;
         purchaseData.status_id = PURCHASE_STATUS.ACCEPTED;
 
         const validatedPurchaseData = await Joi.validate(purchaseData, purchaseValidator);

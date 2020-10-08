@@ -1,16 +1,18 @@
 const Joi = require('joi');
 const {CustomError} = require('../../error');
 const {RESPONSE_STATUS_CODE, PURCHASE_STATUS} = require('../../constant');
-const {buyProduct} = require('../../services');
+const {buyProducts} = require('../../services');
 const {purchaseValidator} = require('../../validators')
 
 module.exports = async (req, res, next) => {
     try {
         const purchaseData = req.body;
         const {products_id} = req.body;
+
+        delete purchaseData.products_id
+
         purchaseData.user_id = 0;
         purchaseData.status_id = PURCHASE_STATUS.IN_PROCESS;
-        purchaseData.product_id = 0;
 
         let validatedPurchaseData = await Joi.validate(purchaseData, purchaseValidator);
 
@@ -19,11 +21,11 @@ module.exports = async (req, res, next) => {
                 validatedPurchaseData.error.details[0].message)
         }
 
-        products_id.map(async (id) => {
+        await Promise.all(products_id.map(async (id) => {
             purchaseData.product_id = id
 
-            await buyProduct(purchaseData)
-        })
+            await buyProducts(purchaseData)
+        }));
 
         res.end()
     } catch (e) {

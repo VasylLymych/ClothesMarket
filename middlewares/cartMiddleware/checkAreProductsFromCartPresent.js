@@ -1,6 +1,6 @@
 const {RESPONSE_STATUS_CODE, PRODUCT_STATUS} = require('./../../constant');
 const {CustomError, CustomErrorData} = require('./../../error');
-const {getProductsByParams, getProductsFromCartByParams} = require('./../../services')
+const {getProductsByParams} = require('./../../services')
 
 module.exports = async (req, res, next) => {
     try {
@@ -9,7 +9,6 @@ module.exports = async (req, res, next) => {
         let productsFromCart;
         let absentProducts = [];
         let absentProductsStatus = false;
-
         if (req.user) {
             const {id: user_id} = req.user;
             productsFromCart = req.products
@@ -22,18 +21,17 @@ module.exports = async (req, res, next) => {
         let products = await Promise.all(productsFromCart.map(async product => {
 
             let [productItem] = await getProductsByParams({
-                product_id: product_id(product),
-                status_id: PRODUCT_STATUS.IN_STOCK
+                id: product_id(product),
             });
 
             return productItem
 
         }));
-
+        console.log(products);
         products.map(async product => {
-            if (!product) {
+            if (product.status_id !== PRODUCT_STATUS.IN_STOCK) {
                 absentProductsStatus = true;
-                absentProducts.push(product.product_id)
+                absentProducts.push(product.id)
             }
         })
 

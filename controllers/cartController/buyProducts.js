@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const {CustomError} = require('../../error');
 const {RESPONSE_STATUS_CODE, PURCHASE_STATUS} = require('../../constant');
-const {buyProduct: buyProducts} = require('../../services');
+const {buyProducts} = require('../../services');
 const {purchaseValidator} = require('./../../validators')
 
 module.exports = async (req, res, next) => {
@@ -9,8 +9,7 @@ module.exports = async (req, res, next) => {
         const {id: user_id} = req.user;
         const purchaseData = req.body;
         const products = req.products;
-        purchaseData.product_id = 0;
-        purchaseData.user_id = 0;
+        purchaseData.user_id = user_id;
         purchaseData.status_id = PURCHASE_STATUS.IN_PROCESS;
 
         let validatedPurchaseData = await Joi.validate(purchaseData, purchaseValidator);

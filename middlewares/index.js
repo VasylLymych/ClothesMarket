@@ -12,3 +12,6 @@ module.exports.checkIsUsersCommentOrIsAdmin = require('./commentMiddleware/check
 module.exports.getPurchaseByParams = require('./purchaseMiddleware/getPurchaseByParams');
 module.exports.createUserDataValidation = require('./userMiddleware/createUserDataValidation');
 module.exports.checkIsUserEmailPresent = require('./userMiddleware/checkIsUserEmailPresent');
+module.exports.checkAreProductsFromCartPresent = require('./cartMiddleware/checkAreProductsFromCartPresent');
+module.exports.getProductsFromCartByParams = require('./cartMiddleware/getProductsFromCartByParams');
+module.exports.checkArePurchasesPresent = require('./purchaseMiddleware/checkArePurchasesPresent');
